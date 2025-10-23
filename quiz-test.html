@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test di valutazione relazione tossica - 15 domande per scoprire la verità.">
+    <title>Test Relazione Tossica - Domande | OLΓЯΞ IL MIИDSΞT</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #FF1493;
+            --secondary: #FF69B4;
+            --success: #10b981;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray: #f8f9fa;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4F0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            background: var(--light);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--light);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        .progress-percentage {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #e5e5e5;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .question-card {
+            background: var(--light);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: rgba(255, 20, 147, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 40px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+        
+        .answers-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .answer-button {
+            padding: 30px;
+            background: var(--gray);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .answer-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+        
+        .answer-button.selected {
+            background: var(--primary);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        .answer-button.yes {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .answer-button.yes:hover,
+        .answer-button.yes.selected {
+            background: #ef4444;
+            color: var(--light);
+            border-color: #ef4444;
+        }
+        
+        .answer-button.no {
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .answer-button.no:hover,
+        .answer-button.no.selected {
+            background: #10b981;
+            color: var(--light);
+            border-color: #10b981;
+        }
+        
+        /* Navigation Buttons */
+        .navigation-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
+        
+        .nav-button {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .btn-back {
+            background: var(--gray);
+            color: var(--text-dark);
+        }
+        
+        .btn-back:hover {
+            background: #e5e5e5;
+        }
+        
+        .btn-back:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-next {
+            background: var(--primary);
+            color: var(--light);
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+        }
+        
+        .btn-next:hover {
+            background: #E0127B;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+        }
+        
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: var(--success);
+            color: var(--light);
+            padding: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-submit:hover {
+            background: #059669;
+        }
+        
+        /* Email Capture Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--light);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .modal-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .email-form {
+            margin-bottom: 20px;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.1);
+        }
+        
+        .submit-email-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-email-btn:hover {
+            background: #E0127B;
+            transform: translateY(-2px);
+        }
+        
+        .skip-link {
+            margin-top: 15px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .skip-link:hover {
+            color: var(--text-dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .question-card {
+                padding: 30px 20px;
+            }
+            
+            .question-text {
+                font-size: 1.4rem;
+            }
+            
+            .answers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">OLΓЯΞ IL MIИDSΞT</div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="container">
+            <div class="progress-info">
+                <span class="progress-text">Domanda <span id="currentQuestion">1</span> di 15</span>
+                <span class="progress-percentage"><span id="progressPercentage">7</span>%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Quiz -->
+    <main>
+        <div class="container">
+            <div class="quiz-container">
+                <div class="question-card" id="questionCard">
+                    <span class="category-badge" id="categoryBadge">Caricamento...</span>
+                    <p class="question-number">Domanda <span id="questionNum">1</span> di 15</p>
+                    <h2 class="question-text" id="questionText">Caricamento domanda...</h2>
+                    
+                    <div class="answers-container">
+                        <button class="answer-button yes" onclick="selectAnswer('yes')">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">❌</div>
+                            SÌ
+                        </button>
+                        <button class="answer-button no" onclick="selectAnswer('no')">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">✓</div>
+                            NO
+                        </button>
+                    </div>
+                    
+                    <div class="navigation-buttons">
+                        <button class="nav-button btn-back" id="btnBack" onclick="previousQuestion()">
+                            ← Indietro
+                        </button>
+                        <button class="nav-button btn-next" id="btnNext" onclick="nextQuestion()" disabled>
+                            Avanti →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Email Capture Modal -->
+    <div class="modal" id="emailModal">
+        <div class="modal-content">
+            <div class="modal-icon">🎉</div>
+            <h2 class="modal-title">Complimenti!</h2>
+            <p class="modal-description">
+                Hai completato il test. Inserisci la tua email per vedere i risultati completi 
+                con dashboard personalizzata e scaricare il report PDF.
+            </p>
+            
+            <form class="email-form" id="emailForm" onsubmit="submitEmail(event)">
+                <input 
+                    type="email" 
+                    class="email-input" 
+                    id="emailInput" 
+                    placeholder="tuaemail@esempio.com" 
+                    required
+                >
+                <button type="submit" class="submit-email-btn">
+                    📊 Vedi i Miei Risultati
+                </button>
+            </form>
+            
+            <p class="skip-link" onclick="skipEmail()">
+                Salta e vedi risultati (senza PDF)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data
+        const questions = [
+            // CATEGORIA 1: Manipolazione Emotiva
+            {
+                category: "Manipolazione Emotiva",
+                question: "Ti fa dubitare della tua memoria o percezione delle cose? (Gaslighting)",
+                categoryId: "manipulation"
+            },
+            {
+                category: "Manipolazione Emotiva",
+                question: "Distorce i fatti o le conversazioni per farti sentire in colpa o confusa?",
+                categoryId: "manipulation"
+            },
+            {
+                category: "Manipolazione Emotiva",
+                question: "Ti accusa di cose che non hai fatto o di reazioni che non hai avuto?",
+                categoryId: "manipulation"
+            },
+            
+            // CATEGORIA 2: Controllo
+            {
+                category: "Controllo",
+                question: "Controlla come ti vesti, dove vai o chi frequenti?",
+                categoryId: "control"
+            },
+            {
+                category: "Controllo",
+                question: "Gestisce i tuoi soldi o prende decisioni finanziarie senza consultarti?",
+                categoryId: "control"
+            },
+            {
+                category: "Controllo",
+                question: "Deve sempre sapere dove sei, con chi sei e cosa stai facendo?",
+                categoryId: "control"
+            },
+            
+            // CATEGORIA 3: Svalutazione
+            {
+                category: "Svalutazione",
+                question: "Ti critica costantemente o ti fa sentire inadeguata?",
+                categoryId: "devaluation"
+            },
+            {
+                category: "Svalutazione",
+                question: "Sminuisce i tuoi successi o li attribuisce alla fortuna o ad altri?",
+                categoryId: "devaluation"
+            },
+            {
+                category: "Svalutazione",
+                question: "Ti confronta negativamente con altre persone?",
+                categoryId: "devaluation"
+            },
+            
+            // CATEGORIA 4: Isolamento
+            {
+                category: "Isolamento",
+                question: "Ti allontana gradualmente da amici e familiari?",
+                categoryId: "isolation"
+            },
+            {
+                category: "Isolamento",
+                question: "Crea conflitti o tensioni con le persone a te care?",
+                categoryId: "isolation"
+            },
+            {
+                category: "Isolamento",
+                question: "Ti fa sentire che sei sola contro tutti?",
+                categoryId: "isolation"
+            },
+            
+            // CATEGORIA 5: Violenza Emotiva
+            {
+                category: "Violenza Emotiva",
+                question: "Usa il 'silent treatment' (ignorarti) come forma di punizione?",
+                categoryId: "emotional_violence"
+            },
+            {
+                category: "Violenza Emotiva",
+                question: "Alterna momenti di amore intenso (love bombing) e freddezza improvvisa?",
+                categoryId: "emotional_violence"
+            },
+            {
+                category: "Violenza Emotiva",
+                question: "Ti minaccia (anche in modo velato) se vuoi lasciarlo o cambiare le cose?",
+                categoryId: "emotional_violence"
+            }
+        ];
+
+        // State
+        let currentQuestionIndex = 0;
+        let answers = [];
+        
+        // Initialize quiz
+        function initQuiz() {
+            // Try to load saved progress
+            const savedAnswers = localStorage.getItem('quizAnswers');
+            const savedIndex = localStorage.getItem('currentQuestionIndex');
+            
+            if (savedAnswers) {
+                answers = JSON.parse(savedAnswers);
+            }
+            
+            if (savedIndex) {
+                currentQuestionIndex = parseInt(savedIndex);
+            }
+            
+            renderQuestion();
+        }
+        
+        // Render current question
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            document.getElementById('categoryBadge').textContent = question.category;
+            document.getElementById('questionNum').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            
+            // Update progress
+            const percentage = Math.round(((currentQuestionIndex + 1) / 15) * 100);
+            document.getElementById('progressPercentage').textContent = percentage;
+            document.getElementById('progressBar').style.width = percentage + '%';
+            
+            // Update back button
+            document.getElementById('btnBack').disabled = currentQuestionIndex === 0;
+            
+            // Check if answer already exists
+            const existingAnswer = answers[currentQuestionIndex];
+            if (existingAnswer) {
+                selectAnswer(existingAnswer, false);
+            } else {
+                // Clear selection
+                document.querySelectorAll('.answer-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                document.getElementById('btnNext').disabled = true;
+            }
+            
+            // Update button text for last question
+            if (currentQuestionIndex === 14) {
+                document.getElementById('btnNext').textContent = '✓ Completa Test';
+                document.getElementById('btnNext').classList.add('btn-submit');
+            } else {
+                document.getElementById('btnNext').textContent = 'Avanti →';
+                document.getElementById('btnNext').classList.remove('btn-submit');
+            }
+            
+            // Animate card
+            const card = document.getElementById('questionCard');
+            card.style.animation = 'none';
+            setTimeout(() => {
+                card.style.animation = 'slideIn 0.5s ease';
+            }, 10);
+        }
+        
+        // Select answer
+        function selectAnswer(answer, saveToArray = true) {
+            // Update UI
+            document.querySelectorAll('.answer-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            if (answer === 'yes') {
+                document.querySelector('.answer-button.yes').classList.add('selected');
+            } else {
+                document.querySelector('.answer-button.no').classList.add('selected');
+            }
+            
+            // Enable next button
+            document.getElementById('btnNext').disabled = false;
+            
+            // Save answer
+            if (saveToArray) {
+                answers[currentQuestionIndex] = answer;
+                localStorage.setItem('quizAnswers', JSON.stringify(answers));
+            }
+        }
+        
+        // Next question
+        function nextQuestion() {
+            if (currentQuestionIndex < 14) {
+                currentQuestionIndex++;
+                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                renderQuestion();
+            } else {
+                // Show email modal
+                showEmailModal();
+            }
+        }
+        
+        // Previous question
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+                renderQuestion();
+            }
+        }
+        
+        // Show email modal
+        function showEmailModal() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+        
+        // Submit email
+        async function submitEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const submitBtn = document.querySelector('.submit-email-btn');
+            
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Invio in corso...';
+            
+            // Calculate scores
+            const scores = calculateScores();
+            
+            // BREVO CONFIGURATION
+            const BREVO_API_KEY = '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'; // ⚠️ SOSTITUISCI CON LA TUA!
+            const BREVO_LIST_ID = 2; // ⚠️ SOSTITUISCI CON IL TUO LIST ID!
+            
+            try {
+                // Send to Brevo
+                const response = await fetch('https://api.brevo.com/v3/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'api-key': BREVO_API_KEY,
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        listIds: [BREVO_LIST_ID],
+                        attributes: {
+                            QUIZ_SCORE: scores.totalPercentage,
+                            RISK_LEVEL: scores.riskLevel.toUpperCase(),
+                            QUIZ_DATE: new Date().toISOString().split('T')[0]
+                        },
+                        updateEnabled: true // Aggiorna se email già esistente
+                    })
+                });
+                
+                if (response.ok || response.status === 204) {
+                    console.log('✅ Email salvata su Brevo con successo!');
+                } else {
+                    console.warn('⚠️ Errore Brevo:', response.status);
+                }
+            } catch (error) {
+                console.error('❌ Errore connessione Brevo:', error);
+                // Continua comunque (non blocchiamo l'utente)
+            }
+            
+            // Save email locally
+            localStorage.setItem('userEmail', email);
+            
+            // Go to results
+            goToResults();
+        }
+        
+        // Skip email
+        function skipEmail() {
+            goToResults();
+        }
+        
+        // Go to results page
+        function goToResults() {
+            // Calculate scores before redirecting
+            const scores = calculateScores();
+            localStorage.setItem('quizScores', JSON.stringify(scores));
+            
+            // Redirect to results
+            window.location.href = 'quiz-results.html';
+        }
+        
+        // Calculate scores
+        function calculateScores() {
+            const categories = {
+                manipulation: { total: 0, max: 3 },
+                control: { total: 0, max: 3 },
+                devaluation: { total: 0, max: 3 },
+                isolation: { total: 0, max: 3 },
+                emotional_violence: { total: 0, max: 3 }
+            };
+            
+            let totalYes = 0;
+            
+            questions.forEach((question, index) => {
+                if (answers[index] === 'yes') {
+                    categories[question.categoryId].total++;
+                    totalYes++;
+                }
+            });
+            
+            // Calculate percentages
+            const categoryPercentages = {};
+            Object.keys(categories).forEach(key => {
+                categoryPercentages[key] = Math.round((categories[key].total / categories[key].max) * 100);
+            });
+            
+            const totalPercentage = Math.round((totalYes / 15) * 100);
+            
+            // Determine risk level
+            let riskLevel;
+            if (totalYes <= 3) {
+                riskLevel = 'low';
+            } else if (totalYes <= 7) {
+                riskLevel = 'medium';
+            } else if (totalYes <= 11) {
+                riskLevel = 'high';
+            } else {
+                riskLevel = 'critical';
+            }
+            
+            return {
+                totalYes,
+                totalPercentage,
+                riskLevel,
+                categories: categoryPercentages,
+                rawScores: categories
+            };
+        }
+        
+        // Initialize on page load
+        initQuiz();
+    </script>
+</body>
+</html>

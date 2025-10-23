@@ -699,7 +699,7 @@
             document.getElementById('emailModal').classList.add('active');
         }
         
-        // Submit email
+        // Submit email using Brevo Form (no API key needed!)
         async function submitEmail(event) {
             event.preventDefault();
             const email = document.getElementById('emailInput').value;
@@ -712,46 +712,66 @@
             // Calculate scores
             const scores = calculateScores();
             
-            // BREVO CONFIGURATION
-            const BREVO_API_KEY = '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';
-            const BREVO_LIST_ID = 2;
+            // METODO 1: Invia a Brevo usando form nascosto
+            // Crea un form invisibile
+            const brevoForm = document.createElement('form');
+            brevoForm.method = 'POST';
+            brevoForm.action = 'https://9d0f5398.sibforms.com/serve/MUIFAFXdAxGINJuUPfwlgsdXaJNvw1qBIxvv7V7L43kkuQUD5JL-KunonwkjUElx5LKTos0L84YirtT0iYDrP1Wwg54inl52SKNGyxuX7EUsb7u96Cmv69BtA5QpahAKmwv033AmTqOV7aPO9bo0PlytMGipe1L7v9WgNTylYFCTJw2Au7X2hY7FCT9NxDHSydNqNEncPDKCP4MELQ==';
+            brevoForm.target = 'brevo_iframe'; // Invia in iframe nascosto
+            brevoForm.style.display = 'none';
             
-            try {
-                // Send to Brevo
-                const response = await fetch('https://api.brevo.com/v3/contacts', {
-                    method: 'POST',
-                    headers: {
-                        'accept': 'application/json',
-                        'api-key': BREVO_API_KEY,
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        listIds: [BREVO_LIST_ID],
-                        attributes: {
-                            QUIZ_SCORE: scores.totalPercentage,
-                            RISK_LEVEL: scores.riskLevel.toUpperCase(),
-                            QUIZ_DATE: new Date().toISOString().split('T')[0]
-                        },
-                        updateEnabled: true // Aggiorna se email già esistente
-                    })
-                });
-                
-                if (response.ok || response.status === 204) {
-                    console.log('✅ Email salvata su Brevo con successo!');
-                } else {
-                    console.warn('⚠️ Errore Brevo:', response.status);
-                }
-            } catch (error) {
-                console.error('❌ Errore connessione Brevo:', error);
-                // Continua comunque (non blocchiamo l'utente)
+            // Campo email
+            const emailField = document.createElement('input');
+            emailField.type = 'email';
+            emailField.name = 'EMAIL'; // Nome campo Brevo (maiuscolo)
+            emailField.value = email;
+            brevoForm.appendChild(emailField);
+            
+            // Campi attributi personalizzati
+            const scoreField = document.createElement('input');
+            scoreField.type = 'hidden';
+            scoreField.name = 'QUIZ_SCORE';
+            scoreField.value = scores.totalPercentage;
+            brevoForm.appendChild(scoreField);
+            
+            const riskField = document.createElement('input');
+            riskField.type = 'hidden';
+            riskField.name = 'RISK_LEVEL';
+            riskField.value = scores.riskLevel.toUpperCase();
+            brevoForm.appendChild(riskField);
+            
+            const dateField = document.createElement('input');
+            dateField.type = 'hidden';
+            dateField.name = 'QUIZ_DATE';
+            dateField.value = new Date().toISOString().split('T')[0];
+            brevoForm.appendChild(dateField);
+            
+            // Crea iframe nascosto per ricevere risposta
+            let iframe = document.getElementById('brevo_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'brevo_iframe';
+                iframe.id = 'brevo_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
             }
+            
+            // Aggiungi form al body e invia
+            document.body.appendChild(brevoForm);
+            brevoForm.submit();
+            
+            // Rimuovi form dopo invio
+            setTimeout(() => {
+                document.body.removeChild(brevoForm);
+            }, 1000);
             
             // Save email locally
             localStorage.setItem('userEmail', email);
             
-            // Go to results
-            goToResults();
+            // Go to results (dopo breve delay per permettere invio)
+            setTimeout(() => {
+                goToResults();
+            }, 1500);
         }
         
         // Skip email

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Grazie per l'Acquisto! | OLΓЯΞ IL MIИDSΞT</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4F0 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .success-icon {
+            text-align: center;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FF1493;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .alert-box h2 {
+            color: #856404;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .alert-box p {
+            color: #856404;
+            font-size: 1.1rem;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .info-box h2 {
+            color: #1e40af;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #1e40af;
+        }
+        
+        .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .steps-section {
+            margin: 40px 0;
+        }
+        
+        .steps-section h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #FF1493;
+        }
+        
+        .step h3 {
+            color: #FF1493;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .step p {
+            color: #666;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #FF1493 0%, #C71585 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-box {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .contact-box h2 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        
+        .contact-box p {
+            color: #065f46;
+            font-size: 1.1rem;
+        }
+        
+        .contact-box a {
+            color: #FF1493;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .social-links h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            color: #333;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #FF1493;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">🎉</div>
+        
+        <h1>Acquisto Completato!</h1>
+        <p class="subtitle">Benvenuta! Il tuo eBook ti sta aspettando 📚</p>
+        
+        <!-- Alert Download -->
+        <div class="alert-box">
+            <h2>📧 Controlla la Tua Email ADESSO!</h2>
+            <p>
+                Ti abbiamo inviato un'email con il <strong>link di download diretto</strong> 
+                per l'eBook e tutti i bonus.
+            </p>
+        </div>
+        
+        <!-- Troubleshooting -->
+        <div class="info-box">
+            <h2>❓ Non Trovi l'Email?</h2>
+            <ul>
+                <li><strong>Controlla la cartella SPAM/Promozioni</strong></li>
+                <li>Cerca email da <strong>"noreply@payhip.com"</strong></li>
+                <li>Oggetto: <strong>"Download your purchase"</strong></li>
+                <li>L'email arriva entro <strong>5 minuti</strong></li>
+                <li>Aggiungi ai contatti per future email</li>
+            </ul>
+        </div>
+        
+        <!-- Next Steps -->
+        <div class="steps-section">
+            <h2>🚀 I Tuoi Prossimi Passi</h2>
+            
+            <div class="step">
+                <h3>1️⃣ Scarica il File ZIP</h3>
+                <p>Click sul link nell'email → Salva sul computer → Estrai i contenuti</p>
+            </div>
+            
+            <div class="step">
+                <h3>2️⃣ Apri l'eBook Principale</h3>
+                <p>File: "Quando-Amore-Diventa-Gioco.pdf" - Puoi leggerlo su PC, tablet, smartphone</p>
+            </div>
+            
+            <div class="step">
+                <h3>3️⃣ Esplora i 4 BONUS</h3>
+                <p>
+                    ✅ 50 Frasi di Autodifesa<br>
+                    ✅ Diario di Guarigione 30gg<br>
+                    ✅ Risorse Emergenza<br>
+                    ✅ Audio Meditazione
+                </p>
+            </div>
+            
+            <div class="step">
+                <h3>4️⃣ Inizia dal Capitolo 1</h3>
+                <p>Ti consiglio di leggere "I 15 Segnali" per capire subito la tua situazione</p>
+            </div>
+        </div>
+        
+        <!-- CTA Support -->
+        <div class="cta-section">
+            <h2>💬 Hai Bisogno di Aiuto?</h2>
+            <p>Sono qui per te! Se hai domande, dubbi o problemi con il download:</p>
+            <p style="font-size: 1.3rem; font-weight: bold;">
+                📧 tuaemail@gmail.com
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.9;">
+                Rispondo entro 24 ore (spesso molto prima!)
+            </p>
+        </div>
+        
+        <!-- Guarantee -->
+        <div class="contact-box">
+            <h2>🛡️ Garanzia 30 Giorni</h2>
+            <p>
+                Se l'eBook non ti aiuta come speravi, 
+                <strong>rimborso completo senza domande</strong>.<br>
+                Puoi anche tenere l'eBook!
+            </p>
+        </div>
+        
+        <!-- Social -->
+        <div class="social-links">
+            <h3>📱 Seguimi per Contenuti Gratuiti</h3>
+            <a href="https://instagram.com/tuoaccount" target="_blank">📸 Instagram</a>
+            <a href="https://tiktok.com/@tuoaccount" target="_blank">🎵 TikTok</a>
+            <a href="https://youtube.com/@tuoaccount" target="_blank">📺 YouTube</a>
+        </div>
+        
+        <!-- Footer -->
+        <p style="text-align: center; margin-top: 40px; color: #999; font-size: 0.9rem;">
+            OLΓЯΞ IL MIИDSΞT © 2025 - Tutti i diritti riservati
+        </p>
+    </div>
+</body>
+</html>

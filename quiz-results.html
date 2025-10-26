@@ -906,22 +906,22 @@
         }
         
         // Share functions
-        function shareWhatsApp() {
-            const text = 'Ho appena fatto questo test per scoprire se sei in una relazione tossica. Fallo anche tu!';
-            const url = window.location.origin + '/quiz.html';
-            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
-        }
-        
-        function shareFacebook() {
-            const url = window.location.origin + '/quiz.html';
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-        }
-        
-        function shareTwitter() {
-            const text = 'Test: Sei in una relazione tossica? Scoprilo in 2 minuti';
-            const url = window.location.origin + '/quiz.html';
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-        }
+function shareWhatsApp() {
+    const text = 'Ho appena fatto questo test per scoprire se sei in una relazione tossica. Fallo anche tu!';
+    const url = 'https://www.oltreilmindset.com/';
+    window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+}
+
+function shareFacebook() {
+    const url = 'https://www.oltreilmindset.com/';
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareTwitter() {
+    const text = 'Test: Sei in una relazione tossica? Scoprilo in 2 minuti';
+    const url = 'https://www.oltreilmindset.com/';
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+}
         
         // Initialize on load
         initDashboard();

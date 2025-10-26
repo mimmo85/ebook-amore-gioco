@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.oltreilmindset.com/sitemap.xml
+
+# Blocca pagine specifiche (opzionale)
+Disallow: /quiz-results.html
+Disallow: /thank-you.html

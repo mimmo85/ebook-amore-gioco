@@ -24,30 +24,64 @@
     
     <!-- Product Schema (Google Rich Results) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Quando l'Amore Diventa un Gioco",
-      "description": "eBook completo per riconoscere e uscire da relazioni tossiche con 4 bonus pratici inclusi",
-      "image": "https://www.oltreilmindset.com/quando-lamore-diventa-un-gioco/assets/ebook-social.jpg",
-      "brand": {
-        "@type": "Brand",
-        "name": "Oltre il Mindset"
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Quando l'Amore Diventa un Gioco",
+  "description": "eBook completo per riconoscere e uscire da relazioni tossiche con 4 bonus pratici inclusi",
+  "image": "https://www.oltreilmindset.com/quando-lamore-diventa-un-gioco/assets/ebook-social.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "Oltre il Mindset"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "27.00",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.oltreilmindset.com/quando-lamore-diventa-un-gioco/",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "IT"
       },
-      "offers": {
-        "@type": "Offer",
-        "price": "27.00",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.oltreilmindset.com/quando-lamore-diventa-un-gioco/"
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 0,
+          "unitCode": "DAY"
+        }
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "127"
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "EUR"
       }
     }
-    </script>
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127"
+  }
+}
+</script>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.oltreilmindset.com/quando-lamore-diventa-un-gioco/">
